@@ -20,10 +20,10 @@ public class App {
             arr[i]=new ArrayList<Integer>();
             ArrayList<String> inputValues = new ArrayList<String>(Arrays.asList(sc.nextLine().split(" ")));
             arr[i]= (ArrayList<Integer>) inputValues.stream().map(s-> Integer.parseInt(s)).collect(Collectors.toList());
-            diagonal1=diagonal1+arr[i].get(count1);
-            diagonal2=diagonal2+arr[i].get(count2);
-            count1++;
-            count2--;
+            diagonal1=diagonal1+arr[i].get(i);
+            diagonal2=diagonal2+arr[i].get(n-i-1);
+            //count1++;
+            //count2--;
         }
         int difference=diagonal1-diagonal2;
         System.out.println(Math.abs(difference));
