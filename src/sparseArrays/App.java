@@ -1,32 +1,41 @@
 package sparseArrays;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class App {
-
 	public static void main(String[] args) {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner sc = new Scanner(System.in);
-        int nStrings = sc.nextInt();
+        int n = sc.nextInt();
         sc.nextLine();
-        String[] words = new String[nStrings];
-        for (int i=0; i<nStrings; i++)
-            words[i]=sc.nextLine();
-
-        int nQueries = sc.nextInt();
-        sc.nextLine();
-        String[] lookupWords = new String[nQueries];
-        for (int j=0; j<nQueries; j++){
-            lookupWords[j]=sc.nextLine();
+        Map<String,Integer> inputMap = new HashMap<>(n);
+        
+        for (int i=0; i<n; i++){
+            String stringInput = sc.next();
+            
+            Integer count = inputMap.get(stringInput);
+            if(count == null){
+                count = 0;
+            }
+            count++;
+            inputMap.put(stringInput,count);
         }
         
-        for(int i=0; i<nQueries; i++){
-            int contagem = 0;
-            for(int j=0; j<nStrings; j++)
-                if (words[j].trim().equals(lookupWords[i]))
-                    contagem++;
-            System.out.println(contagem);
+        int nQuery = sc.nextInt();
+        sc.nextLine();
+        
+        for (int j=0; j<nQuery; j++){
+            String query = sc.next();
+            
+            Integer count = inputMap.get(query);
+            
+            if (count == null){
+                count=0;
+            }
+            
+            System.out.println(count);
         }
     }
-
 }
